@@ -5,5 +5,5 @@ import { Hello } from "./main/hello";
 
 ReactDOM.render(
     <Hello/>,
-    document.getElementById("example")
+    document.getElementById("hello")
 );
