@@ -1,9 +1,10 @@
 import * as React from "react";
-import {shallow} from "enzyme";
+import {shallow, ShallowWrapper} from "enzyme";
 import {Hello} from "../hello";
 
 describe("Hello Component", () => {
-    let helloComponent: any;
+    let helloComponent: ShallowWrapper<Hello, any>;
+
     beforeEach(() => {
         helloComponent = shallow(<Hello/>);
     });
