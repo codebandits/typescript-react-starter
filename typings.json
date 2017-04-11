@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "enzyme": "registry:dt/enzyme#2.7.0+20170320235509"
+  }
+}
