@@ -4,6 +4,6 @@ export interface HelloProps {}
 
 export class Hello extends React.Component<HelloProps, undefined> {
     render() {
-        return <h1>Hello typescript and react!</h1>;
+        return <h1>Hello typescript and react!, hot-load mode on!</h1>;
     }
 }

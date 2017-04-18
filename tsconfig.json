@@ -1,16 +1,21 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "commonjs",
-        "target": "es6",
-        "jsx": "react"
-    },
-    "include": [
-        "./src/**/*"
-    ],
-    "files": [
-        "src/**/*"
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "noEmit": true,
+    "jsx": "react",
+    "strictNullChecks": true,
+    "lib": [
+      "dom",
+      "es2015",
+      "es5",
+      "es6"
     ]
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
