@@ -12,7 +12,7 @@ const incrementAction = createAction<void>(
 );
 
 const decrementAction = createAction<void>(
-    actionTypes.INCREMENT.toString(),
+    actionTypes.DECREMENT.toString(),
     () => {
     }
 );
