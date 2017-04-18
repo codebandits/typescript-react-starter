@@ -14,7 +14,10 @@ const config = {
         rules: [
             {
                 test: /\.tsx?$/,
-                exclude: /(node_modules|__tests__)/,
+                exclude: [
+                    path.resolve(__dirname, 'node_modules'),
+                    /\.test\.tsx$/
+                ],
                 use: ['react-hot-loader', 'awesome-typescript-loader']
             },
             {
