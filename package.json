@@ -51,7 +51,6 @@
     "react-redux": "5.0.4",
     "redux": "3.6.0",
     "redux-logger": "3.0.1",
-    "typemoq": "1.4.1",
     "webpack": "^2.3.3"
   },
   "jest": {
