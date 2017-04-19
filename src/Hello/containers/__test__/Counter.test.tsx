@@ -1,10 +1,10 @@
 import * as React from "react";
-import {shallow} from "enzyme";
+import {shallow, ShallowWrapper} from "enzyme";
 
 import Counter from "../Counter";
 
 describe("counter container", () => {
-    let subject: any,
+    let subject: ShallowWrapper<T, any>,
         mockIncrement: () => {},
         mockDecrement: () => {};
     beforeEach(() => {
