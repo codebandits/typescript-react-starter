@@ -5,19 +5,19 @@ export enum actionTypes {
     DECREMENT
 }
 
-const incrementAction = createAction<void>(
+export const incrementAction = createAction<void>(
     actionTypes.INCREMENT.toString(),
     () => {
     }
 );
 
-const decrementAction = createAction<void>(
+export const decrementAction = createAction<void>(
     actionTypes.DECREMENT.toString(),
     () => {
     }
 );
 
 export default {
-    incrementAction,
-    decrementAction
+    decrementAction,
+    incrementAction
 }
