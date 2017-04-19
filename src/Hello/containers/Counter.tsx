@@ -12,8 +12,8 @@ const Counter = (props: IProps) => {
     return (
         <div>
             <p>Counter: {counter}</p>
-            <button onClick={increment} label="Increment" />
-            <button onClick={decrement} label="Decrement" />
+            <button onClick={increment} label="Increment" id="increment"/>
+            <button onClick={decrement} label="Decrement" id="decrement"/>
         </div>
     );
 };
