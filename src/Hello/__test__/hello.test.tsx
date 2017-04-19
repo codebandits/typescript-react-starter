@@ -10,7 +10,6 @@ import Counter from "../containers/Counter";
 import {IRootState} from "../../rootReducer";
 import {incrementAction, decrementAction} from "../actions";
 
-
 describe("Hello Component", () => {
     let helloComponent: ShallowWrapper<Hello, any>;
     let props: HelloProps;
