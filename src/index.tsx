@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Provider } from 'react-redux';
+import {Provider, Store} from 'react-redux';
 
 import configureStore from "./configureStore";
 import Hello from "./Hello/Hello";
 
-const store = configureStore();
+const store : Store<any> = configureStore();
 ReactDOM.render(
     <Provider store={store}>
         <Hello/>

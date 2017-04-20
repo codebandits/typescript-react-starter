@@ -1,3 +1,4 @@
+import DefaultState from "../interfaces/defaultState";
 jest.mock("../actions");
 
 import * as React from "react";
@@ -10,9 +11,8 @@ import Counter from "../containers/Counter";
 import {IRootState} from "../../rootReducer";
 import {incrementAction, decrementAction} from "../actions";
 
-
 describe("Hello Component", () => {
-    let helloComponent: ShallowWrapper<Hello, any>;
+    let helloComponent: ShallowWrapper<Hello, DefaultState>;
     let props: HelloProps;
     let increment: ActionFunction0<Action<void>>;
     let decrement: ActionFunction0<Action<void>>;
@@ -65,7 +65,7 @@ describe("Hello Component", () => {
                 counters: counters
             };
 
-            let props = mapStateToProps(state);
+            let props : any = mapStateToProps(state);
 
             expect(props.counter).toBe(1);
         });
