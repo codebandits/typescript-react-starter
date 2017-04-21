@@ -1,16 +1,24 @@
 import * as React from "react";
-import {shallow, ShallowWrapper} from "enzyme";
-
 import Counter from "../Counter";
+import {EnzymePropSelector, shallow, ShallowWrapper} from "enzyme";
+import {Hello} from "../Hello";
 
 describe("counter container", () => {
-    let subject: ShallowWrapper<T, any>,
+    let subject: ShallowWrapper<Hello, any>,
         mockIncrement: () => {},
         mockDecrement: () => {};
+
+    let incrementButtonProps: EnzymePropSelector;
+    let decrementButtonProps: EnzymePropSelector;
+
     beforeEach(() => {
         mockIncrement = jest.fn();
         mockDecrement = jest.fn();
         subject = shallow(<Counter increment={mockIncrement} decrement={mockDecrement} counter={1}/>);
+
+        incrementButtonProps = subject.find("#increment").props();
+        decrementButtonProps = subject.find("#decrement").props();
+
     });
 
     it("it shows the counter", () => {
@@ -18,13 +26,13 @@ describe("counter container", () => {
     });
 
     it("clicking on the increment button call property increment", () => {
-        subject.find("#increment").props().onClick();
+        incrementButtonProps.onClick();
 
         expect(mockIncrement).toBeCalled();
     });
 
     it("clicking on the decrement button call property decrement", () => {
-        subject.find("#decrement").props().onClick();
+        decrementButtonProps.onClick();
 
         expect(mockDecrement).toBeCalled();
     });

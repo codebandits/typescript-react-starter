@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import helloReducer from "./Hello/reducer";
-import helloActions from "./Hello/actions";
+import helloReducer from "./main/reducer";
+import helloActions from "./main/actions/actions";
 
 export interface IRootState {
     counters: typeof helloActions

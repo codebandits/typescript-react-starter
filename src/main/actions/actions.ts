@@ -1,18 +1,16 @@
 import {createAction} from "redux-actions";
 
-export enum actionTypes {
-    INCREMENT,
-    DECREMENT
-}
+export const INCREMENT = "INCREMENT";
+export const DECREMENT = "DEVREMENT";
 
 export const incrementAction : any = createAction<void>(
-    actionTypes.INCREMENT.toString(),
+    INCREMENT,
     () => {
     }
 );
 
 export const decrementAction : any = createAction<void>(
-    actionTypes.DECREMENT.toString(),
+    DECREMENT,
     () => {
     }
 );

@@ -3,9 +3,9 @@ import * as React from "react";
 import {connect, Dispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import Counter from "./containers/Counter";
-import {IRootState} from "../rootReducer";
-import actions from "./actions";
+import Counter from "./Counter";
+import {IRootState} from "../../rootReducer";
+import actions from "../actions/actions";
 
 export interface HelloProps {
     counter: number,

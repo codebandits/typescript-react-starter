@@ -1,21 +1,24 @@
-import DefaultState from "../interfaces/defaultState";
-jest.mock("../actions");
+import DefaultState from "../../interfaces/defaultState";
+jest.mock("../../actions/actions");
 
 import * as React from "react";
 import {shallow, ShallowWrapper} from "enzyme";
 import {Dispatch} from "react-redux";
-import { ActionFunction0, Action } from "redux-actions";
+import {ActionFunction0, Action} from "redux-actions";
 
 import {Hello, HelloProps, mapDispatchToProps, mapStateToProps} from "../Hello";
-import Counter from "../containers/Counter";
-import {IRootState} from "../../rootReducer";
-import {incrementAction, decrementAction} from "../actions";
+import Counter from "../Counter";
+import {IRootState} from "../../../rootReducer";
+import {EnzymePropSelector} from "@types/enzyme";
+import {decrementAction, incrementAction} from "../../actions/actions";
 
 describe("Hello Component", () => {
     let helloComponent: ShallowWrapper<Hello, DefaultState>;
     let props: HelloProps;
     let increment: ActionFunction0<Action<void>>;
     let decrement: ActionFunction0<Action<void>>;
+    let counter: number;
+    let counterProps: EnzymePropSelector;
 
     beforeEach(() => {
         increment = jest.fn();
@@ -28,7 +31,9 @@ describe("Hello Component", () => {
             }
         } as HelloProps;
 
-        helloComponent = shallow(<Hello actions={props.actions} counter={props.counter} />);
+        helloComponent = shallow(<Hello actions={props.actions} counter={props.counter}/>);
+
+        counterProps = helloComponent.find(Counter).props()
     });
 
     it("says hello", () => {
@@ -41,16 +46,18 @@ describe("Hello Component", () => {
         });
 
         it("passes counter property", () => {
-            expect(helloComponent.find(Counter).props().counter).toEqual(2);
+            expect(counterProps.counter).toEqual(2);
         });
 
         it("passes functions of increment the counter", () => {
-            helloComponent.find(Counter).props().increment();
+            counterProps.increment();
+
             expect(increment).toBeCalled();
         });
 
         it("passes functions of decrement the counter", () => {
-            helloComponent.find(Counter).props().decrement();
+            counterProps.decrement();
+
             expect(decrement).toBeCalled();
         });
     });
@@ -65,7 +72,7 @@ describe("Hello Component", () => {
                 counters: counters
             };
 
-            let props : any = mapStateToProps(state);
+            let props: any = mapStateToProps(state);
 
             expect(props.counter).toBe(1);
         });
