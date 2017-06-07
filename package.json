@@ -22,7 +22,7 @@
     "@types/react": "15.0.24",
     "@types/react-dom": "^15.5.0",
     "@types/react-redux": "^4.4.38",
-    "@types/redux-actions": "^1.2.3",
+    "@types/redux-actions": "^1.2.6",
     "@types/redux-logger": "^3.0.0",
     "awesome-typescript-loader": "^3.1.2",
     "cross-env": "4.0.0",
