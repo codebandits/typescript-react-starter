@@ -1,18 +1,18 @@
 import * as React from "react";
 
 import {connect, Dispatch} from "react-redux";
-import {bindActionCreators} from "redux";
 
 import Counter from "./Counter";
 import {IRootState} from "../../rootReducer";
-import actions from "../actions/actions";
+import actions, {CounterAction} from "../actions/actions";
 
 export interface HelloProps {
     counter: number,
-    actions: typeof actions
+    incrementAction: CounterAction,
+    decrementAction: CounterAction
 }
 
-export class Hello extends React.Component<HelloProps, void> {
+export class Hello extends React.Component<HelloProps, IRootState> {
     constructor(props: HelloProps) {
         super(props);
 
@@ -21,11 +21,11 @@ export class Hello extends React.Component<HelloProps, void> {
     }
 
     increment() {
-        this.props.actions.incrementAction();
+        this.props.incrementAction();
     }
 
     decrement() {
-        this.props.actions.decrementAction();
+        this.props.decrementAction();
     }
 
     render() {
@@ -46,7 +46,8 @@ export const mapStateToProps = (state: IRootState) => {
 
 export const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        incrementAction: () => { dispatch(actions.incrementAction()) },
+        decrementAction: () => { dispatch(actions.decrementAction()) }
     }
 };
 

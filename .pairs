@@ -1,0 +1,6 @@
+# .pairs - configuration for 'git pair'
+# place in project or home directory
+pairs:
+    at: Alex T
+    rs: Rodolfo S
+global: false

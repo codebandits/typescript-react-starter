@@ -1,10 +1,11 @@
-import {decrementAction, INCREMENT, incrementAction, DECREMENT} from "../actions";
+import {decrementAction, incrementAction, CounterEnum} from "../actions";
 
 describe("incrementAction", () => {
     it("returns action of type increment", () => {
         let action = {
-            type: INCREMENT
+            type: CounterEnum.INCREMENT
         };
+
         expect(incrementAction()).toEqual(action);
     });
 });
@@ -12,7 +13,7 @@ describe("incrementAction", () => {
 describe("decrementAction", () => {
     it("returns action of type decrement", () => {
         let action = {
-            type: DECREMENT
+            type: CounterEnum.DECREMENT
         };
         expect(decrementAction()).toEqual(action);
     });

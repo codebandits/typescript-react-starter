@@ -2,11 +2,13 @@ import * as React from "react";
 import Counter from "../Counter";
 import {EnzymePropSelector, shallow, ShallowWrapper} from "enzyme";
 import {Hello} from "../Hello";
+import {IRootState} from "../../../rootReducer";
+import {CounterAction} from "../../actions/actions";
 
 describe("counter container", () => {
-    let subject: ShallowWrapper<Hello, any>,
-        mockIncrement: () => {},
-        mockDecrement: () => {};
+    let subject: ShallowWrapper<Hello, IRootState>,
+        mockIncrement: () => CounterAction,
+        mockDecrement: () => CounterAction;
 
     let incrementButtonProps: EnzymePropSelector;
     let decrementButtonProps: EnzymePropSelector;

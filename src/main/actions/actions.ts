@@ -1,19 +1,21 @@
-import {createAction} from "redux-actions";
+export enum CounterEnum {
+    INCREMENT = "INCREMENT",
+    DECREMENT = "DECREMENT"
+}
 
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DEVREMENT";
+type Counter = {
+    type: CounterEnum
+}
 
-export const incrementAction : any = createAction<void>(
-    INCREMENT,
-    () => {
-    }
-);
+export type CounterAction = () => Counter
 
-export const decrementAction : any = createAction<void>(
-    DECREMENT,
-    () => {
-    }
-);
+export const incrementAction :  CounterAction = () => {
+    return { type: CounterEnum.INCREMENT }
+};
+
+export const decrementAction : CounterAction = () => {
+   return { type: CounterEnum.DECREMENT }
+};
 
 export default {
     decrementAction,

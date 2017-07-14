@@ -4,7 +4,7 @@ const merge           = require('webpack-merge');
 const WriteFilePlugin = require("write-file-webpack-plugin");
 const base            = require("./webpack.config.base");
 
-const hotPort = 8080;
+const hotPort = 8888;
 
 const config = {
     output: {
