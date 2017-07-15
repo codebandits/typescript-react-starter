@@ -16,6 +16,7 @@ export namespace Api {
     }
 }
 
-export class Greeting{
-    constructor(public greeting: string){}
+export class Greeting {
+    constructor(public greeting: string) {
+    }
 }
