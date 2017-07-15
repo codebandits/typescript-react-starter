@@ -4,12 +4,15 @@ import {connect, Dispatch} from "react-redux";
 
 import Counter from "./Counter";
 import {IRootState} from "../../rootReducer";
-import actions, {CounterAction} from "../actions/actions";
+import actions, {CounterAction, getGreetingAction} from "../actions/actions";
+import {Greeting} from "../api/Api";
 
 export interface HelloProps {
     counter: number,
+    greetingState: Greeting,
     incrementAction: CounterAction,
-    decrementAction: CounterAction
+    decrementAction: CounterAction,
+    getGreetingAction: any,
 }
 
 export class Hello extends React.Component<HelloProps, IRootState> {
@@ -18,6 +21,10 @@ export class Hello extends React.Component<HelloProps, IRootState> {
 
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.getGreetingAction()
     }
 
     increment() {
@@ -30,7 +37,7 @@ export class Hello extends React.Component<HelloProps, IRootState> {
 
     render() {
         return <div>
-            <h1>Hello typescript and react!</h1>
+            <h1>{this.props.greetingState.greeting}</h1>
             <Counter
                 counter={this.props.counter}
                 decrement={this.decrement}
@@ -46,8 +53,15 @@ export const mapStateToProps = (state: IRootState) => {
 
 export const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
     return {
-        incrementAction: () => { dispatch(actions.incrementAction()) },
-        decrementAction: () => { dispatch(actions.decrementAction()) }
+        incrementAction: () => {
+            dispatch(actions.incrementAction())
+        },
+        decrementAction: () => {
+            dispatch(actions.decrementAction())
+        },
+        getGreetingAction: () => {
+            dispatch(actions.getGreetingAction())
+        }
     }
 };
 

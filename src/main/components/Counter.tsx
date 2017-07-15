@@ -1,9 +1,11 @@
 import * as React from 'react';
 import DefaultState from "../interfaces/defaultState"
 import {StatelessComponent} from "react";
+import {Greeting} from "../api/Api";
 
 
-export interface CounterProps extends DefaultState {
+export interface CounterProps {
+    counter: number;
     increment(): void;
     decrement(): void;
 }

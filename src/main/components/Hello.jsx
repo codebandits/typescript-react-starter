@@ -1,18 +1,11 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var React = require("react");
 var react_redux_1 = require("react-redux");
-var redux_1 = require("redux");
 var Counter_1 = require("./Counter");
 var actions_1 = require("../actions/actions");
 var Hello = (function (_super) {
@@ -24,10 +17,10 @@ var Hello = (function (_super) {
         return _this;
     }
     Hello.prototype.increment = function () {
-        this.props.actions.incrementAction();
+        this.props.incrementAction();
     };
     Hello.prototype.decrement = function () {
-        this.props.actions.decrementAction();
+        this.props.decrementAction();
     };
     Hello.prototype.render = function () {
         return <div>
@@ -43,7 +36,9 @@ exports.mapStateToProps = function (state) {
 };
 exports.mapDispatchToProps = function (dispatch) {
     return {
-        actions: redux_1.bindActionCreators(actions_1.default, dispatch)
+        incrementAction: function () { dispatch(actions_1.default.incrementAction()); },
+        decrementAction: function () { dispatch(actions_1.default.decrementAction()); }
     };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = react_redux_1.connect(exports.mapStateToProps, exports.mapDispatchToProps)(Hello);

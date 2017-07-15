@@ -1,3 +1,4 @@
+import {Greeting} from "../../api/Api";
 jest.mock("../../actions/actions");
 
 import DefaultState from "../../interfaces/defaultState";
@@ -8,11 +9,11 @@ import {Hello, HelloProps, mapDispatchToProps, mapStateToProps} from "../Hello";
 import Counter from "../Counter";
 import {IRootState} from "../../../rootReducer";
 import {EnzymePropSelector} from "enzyme";
-import Actions , {CounterAction, decrementAction, incrementAction} from "../../actions/actions";
+import Actions, {CounterAction, decrementAction, getGreetingAction, incrementAction} from "../../actions/actions";
 
 const mockDecrementAction: jest.Mock<CounterAction> = decrementAction as any;
 const mockIncrementAction: jest.Mock<CounterAction> = incrementAction as any;
-
+const mockGetGreetingAction: jest.Mock<any> = getGreetingAction as any;
 
 describe("Hello Component", () => {
     let helloComponent: ShallowWrapper<Hello, DefaultState>;
@@ -23,8 +24,10 @@ describe("Hello Component", () => {
     beforeEach(() => {
         props = {
             counter: 2,
+            greetingState: new Greeting("hello"),
             incrementAction: incrementAction,
-            decrementAction: decrementAction
+            decrementAction: decrementAction,
+            getGreetingAction: getGreetingAction
 
         } as HelloProps;
 
@@ -32,14 +35,21 @@ describe("Hello Component", () => {
             <Hello
             incrementAction={props.incrementAction}
             decrementAction={props.decrementAction}
-            counter={props.counter} />);
+            getGreetingAction={props.getGreetingAction}
+            counter={props.counter}
+            greetingState={props.greetingState}/>);
 
         counterProps = helloComponent.find(Counter).props()
     });
 
     it("says hello", () => {
-        expect(helloComponent.find("h1").text()).toContain("Hello typescript and react!");
+        expect(helloComponent.find("h1").text()).toContain("hello");
     });
+
+    it("gets the greeting on mount", function () {
+        expect(getGreetingAction).toHaveBeenCalled();
+    });
+
 
     describe("Counter component", () => {
         it("shows the counter component", () => {
@@ -96,6 +106,17 @@ describe("Hello Component", () => {
 
             expect(incrementAction).toBeCalled();
             expect(dispatch).toBeCalledWith("you are going up, congratulations!");
+        });
+
+        it("maps action functions to get greeting function", () => {
+            mockGetGreetingAction.mockReturnValue(new Greeting("hello"));
+            let dispatch: Dispatch<{}> = jest.fn();
+
+            let props = mapDispatchToProps(dispatch);
+            props.getGreetingAction();
+
+            expect(getGreetingAction).toBeCalled();
+            expect(dispatch).toBeCalledWith(new Greeting("hello"));
         });
     });
 });

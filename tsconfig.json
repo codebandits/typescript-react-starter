@@ -21,7 +21,6 @@
   ],
   "exclude": [
     "**/node_modules/**/*",
-    "%40types",
-    "**/*.test.*"
+    "%40types"
   ]
 }
