@@ -2,20 +2,33 @@ import * as React from "react";
 
 import {connect, Dispatch} from "react-redux";
 
-import Counter from "./Counter";
 import {IRootState} from "../../rootReducer";
-import actions, {CounterAction, getGreetingAction} from "../actions/actions";
+import actions, {CounterAction, CounterType} from "../actions/actions";
+import Counter from "./Counter";
 import {Greeting} from "../api/Api";
+import {ThunkAction} from "redux-thunk";
+import {Action} from "redux";
 
 export interface HelloProps {
     counter: number,
     greetingState: Greeting,
     incrementAction: CounterAction,
     decrementAction: CounterAction,
-    getGreetingAction: any,
+    getGreetingAction: () => ThunkAction<Promise<void>, CounterType, null>,
 }
 
-export class Hello extends React.Component<HelloProps, IRootState> {
+interface HelloDispatch {
+    incrementAction: () => void,
+    decrementAction: () => void,
+    getGreetingAction: () => void,
+}
+
+export interface HelloState {
+    counter: number,
+    greetingState: Greeting
+}
+
+export class Hello extends React.Component<HelloProps> {
     constructor(props: HelloProps) {
         super(props);
 
@@ -47,11 +60,12 @@ export class Hello extends React.Component<HelloProps, IRootState> {
     }
 }
 
-export const mapStateToProps = (state: IRootState) => {
+export const mapStateToProps = (state: IRootState): HelloState => {
     return state.counters;
 };
 
-export const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
+
+export const mapDispatchToProps: Dispatch<Action> = (dispatch: Dispatch<Action>): HelloDispatch => {
     return {
         incrementAction: () => {
             dispatch(actions.incrementAction())
@@ -65,4 +79,4 @@ export const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
     }
 };
 
-export default connect<any, any, any>(mapStateToProps, mapDispatchToProps)(Hello)
+export default connect<HelloState, HelloDispatch, {}>(mapStateToProps, mapDispatchToProps)(Hello);

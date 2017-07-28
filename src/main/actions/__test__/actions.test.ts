@@ -1,6 +1,6 @@
 jest.mock("../../api/Api");
 import {ThunkAction} from "redux-thunk";
-import {decrementAction, incrementAction, CounterEnum, getGreetingAction, Counter} from "../actions";
+import {decrementAction, incrementAction, CounterEnum, getGreetingAction, CounterType} from "../actions";
 import {Api, Greeting} from "../../api/Api";
 import getGreeting = Api.getGreeting;
 
@@ -25,7 +25,7 @@ describe("decrementAction", () => {
 
 describe("fetch greeting", () => {
     it("gets the greeting from the api", async () => {
-        const greetingThunk: ThunkAction<void, Counter, any> = getGreetingAction();
+        const greetingThunk: ThunkAction<void, CounterType, any> = getGreetingAction();
         let greeting = new Greeting("hello");
 
         (getGreeting as any)
@@ -40,7 +40,7 @@ describe("fetch greeting", () => {
     });
 
     it("sets the greeting to a default if the greeting is not found", async () => {
-        const greetingThunk: ThunkAction<void, Counter, any> = getGreetingAction();
+        const greetingThunk: ThunkAction<void, CounterType, any> = getGreetingAction();
         let greeting = new Greeting("Create a greeting endpoint for a custom greeting");
 
         (getGreeting as any)
