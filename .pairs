@@ -3,4 +3,9 @@
 pairs:
     at: Alex T
     rs: Rodolfo S
+email:
+  prefix: pair
+  domain: pivotallabs.com
+  no_solo_prefix: true
 global: false
+
