@@ -1,5 +1,5 @@
 # React Typescript Starter #
-[![CircleCI](https://circleci.com/gh/athornburg/typescript-react-starter.svg?style=svg)](https://circleci.com/gh/athornburg/typescript-react-starter)
+[![CircleCI](https://circleci.com/gh/codebandits/typescript-react-starter.svg?style=svg)](https://circleci.com/gh/codebandits/typescript-react-starter)
 
 A simple react and typescript app
 
