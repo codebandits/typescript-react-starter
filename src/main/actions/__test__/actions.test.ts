@@ -1,7 +1,10 @@
-jest.mock("../../api/Api");
+import {SafeMock, verify} from "safe-mock";
 import {ThunkAction} from "redux-thunk";
-import {decrementAction, incrementAction, CounterEnum, getGreetingAction, CounterType} from "../actions";
+import {CounterAction, CounterEnum, CounterType, decrementAction, getGreetingAction, incrementAction} from "../actions";
 import {Api, Greeting} from "../../api/Api";
+import {Dispatch} from "redux";
+
+jest.mock("../../api/Api");
 import getGreeting = Api.getGreeting;
 
 describe("incrementAction", () => {
@@ -25,17 +28,18 @@ describe("decrementAction", () => {
 
 describe("fetch greeting", () => {
     it("gets the greeting from the api", async () => {
-        const greetingThunk: ThunkAction<void, CounterType, any> = getGreetingAction();
         let greeting = new Greeting("hello");
 
         (getGreeting as any)
             .mockReturnValue(Promise.resolve(greeting));
-        const dispatch = jest.fn();
 
-        await greetingThunk(dispatch, jest.fn(), null);
+        let mockDispatchCounter = SafeMock.mockFunction<Dispatch<CounterType>>();
+        let mockCounterAction = SafeMock.mockFunction<CounterAction>();
 
-        expect(dispatch)
-            .toHaveBeenCalledWith({type: "RECEIVE_GREETING", payload: greeting});
+        await getGreetingAction()(mockDispatchCounter, mockCounterAction, null);
+
+        verify(mockDispatchCounter)
+            .calledWith({type: CounterEnum.RECEIVE_GREETING, payload: greeting});
         expect(getGreeting).toHaveBeenCalled()
     });
 

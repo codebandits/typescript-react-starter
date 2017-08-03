@@ -27,8 +27,8 @@ const greetingReceivedAction: CounterAction = (greeting: Greeting) => {
     return {type: CounterEnum.RECEIVE_GREETING, payload: greeting}
 };
 
-export const getGreetingAction: () => ThunkAction<Promise<void>, CounterType, null>
-    = (): ThunkAction<Promise<void>, CounterType, null> => {
+export const getGreetingAction: () => ThunkAction<Promise<void>, CounterType, any>
+    = (): ThunkAction<Promise<void>, CounterType, any> => {
     return (dispatch: Dispatch<CounterType>) => {
         return Api.getGreeting()
             .then((greeting: Greeting) => {
@@ -39,7 +39,7 @@ export const getGreetingAction: () => ThunkAction<Promise<void>, CounterType, nu
                     new Greeting("Create a greeting endpoint " +
                         "for a custom greeting"))
                 );
-            })
+            });
     }
 };
 
