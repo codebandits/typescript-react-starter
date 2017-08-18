@@ -1,10 +1,16 @@
+jest.mock("../../api/Api");
+import {Dispatch} from "react-redux";
 import {SafeMock, verify} from "safe-mock";
 import {ThunkAction} from "redux-thunk";
 import {CounterAction, CounterEnum, CounterType, decrementAction, getGreetingAction, incrementAction} from "../actions";
 import {Api, Greeting} from "../../api/Api";
-import {Dispatch} from "redux";
 
-jest.mock("../../api/Api");
+declare module "redux" {
+    export interface Dispatch<S> {
+        <R, E>(asyncAction: ThunkAction<R, S, E> | S): R;
+    }
+}
+
 import getGreeting = Api.getGreeting;
 
 describe("incrementAction", () => {

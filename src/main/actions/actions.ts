@@ -1,6 +1,6 @@
+import {Api, Greeting} from "../api/Api";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "react-redux";
-import {Api, Greeting} from "../api/Api";
 
 export enum CounterEnum {
     INCREMENT = "INCREMENT",

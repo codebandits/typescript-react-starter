@@ -1,13 +1,12 @@
 import * as React from "react";
 
 import {connect, Dispatch} from "react-redux";
-
+import {Action} from "redux";
 import {IRootState} from "../../rootReducer";
 import actions, {CounterAction, CounterType} from "../actions/actions";
 import Counter from "./Counter";
 import {Greeting} from "../api/Api";
 import {ThunkAction} from "redux-thunk";
-import {Action} from "redux";
 
 export interface HelloProps {
     counter: number,

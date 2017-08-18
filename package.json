@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "build": "tsc --pretty",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --color",
     "prod": "cross-env NODE_ENV=production webpack"
   },
